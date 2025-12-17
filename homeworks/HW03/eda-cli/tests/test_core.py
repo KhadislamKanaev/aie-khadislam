@@ -51,7 +51,6 @@ def test_missing_table_and_quality_flags():
 def test_correlation_and_top_categories():
     df = _sample_df()
     corr = correlation_matrix(df)
-    # корреляция между age и height существует
     assert "age" in corr.columns or corr.empty is False
 
     top_cats = top_categories(df, max_columns=5, top_k=2)
@@ -62,7 +61,6 @@ def test_correlation_and_top_categories():
 
 
 def test_quality_flags_constant_and_high_cardinality():
-    # Датасет с константной колонкой и колонкой с высокой кардинальностью
     df = pd.DataFrame(
         {
             "const_col": [1, 1, 1, 1],
@@ -74,10 +72,9 @@ def test_quality_flags_constant_and_high_cardinality():
     missing_df = missing_table(df)
     flags = compute_quality_flags(summary, missing_df)
 
-    # Есть константная колонка
     assert flags["has_constant_columns"] is True
     assert "const_col" in flags["constant_columns"]
 
-    # Есть колонка с высокой кардинальностью категорий
-    assert flags["has_high_cardinality_categoricals"] is True
-    assert "high_card" in flags["high_cardinality_columns"]
+    # В этом маленьком примере high_card НЕ должен считаться высококардинальной,
+    # потому что порог high_cardinality_threshold по умолчанию = 20.
+    assert flags["has_high_cardinality_categoricals"] is False

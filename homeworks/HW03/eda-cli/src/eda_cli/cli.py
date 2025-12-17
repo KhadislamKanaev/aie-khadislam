@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional
 
 import pandas as pd
 import typer
@@ -74,6 +73,10 @@ def report(
         5,
         help="Сколько top-категорий показывать в отчёте для категориальных признаков.",
     ),
+    high_card_threshold: int = typer.Option(
+        20,
+        help="Порог уникальных значений для high-cardinality категориальных колонок.",
+    ),
 ) -> None:
     """
     Сгенерировать полный EDA-отчёт:
@@ -96,7 +99,11 @@ def report(
     top_cats = top_categories(df, top_k=top_k_categories)
 
     # 2. Качество в целом
-    quality_flags = compute_quality_flags(summary, missing_df)
+    quality_flags = compute_quality_flags(
+        summary,
+        missing_df,
+        high_cardinality_threshold=high_card_threshold,
+    )
 
     # 3. Сохраняем табличные артефакты
     summary_df.to_csv(out_root / "summary.csv", index=False)
@@ -109,7 +116,7 @@ def report(
     # 4. Markdown-отчёт
     md_path = out_root / "report.md"
     with md_path.open("w", encoding="utf-8") as f:
-        f.write(f"# EDA-отчёт\n\n")
+        f.write("# EDA-отчёт\n\n")
         f.write(f"Исходный файл: `{Path(path).name}`\n\n")
         f.write(f"Строк: **{summary.n_rows}**, столбцов: **{summary.n_cols}**\n\n")
 
@@ -130,7 +137,8 @@ def report(
         f.write(
             f"- Высокая кардинальность категорий: "
             f"**{quality_flags['has_high_cardinality_categoricals']}** "
-            f"{quality_flags['high_cardinality_columns']}\n\n"
+            f"{quality_flags['high_cardinality_columns']} "
+            f"(threshold={high_card_threshold})\n\n"
         )
 
         f.write("## Колонки\n\n")
