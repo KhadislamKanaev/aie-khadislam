@@ -1,0 +1,44 @@
+{
+  "tree": {
+    "best_params": {
+      "ccp_alpha": 0.001,
+      "max_depth": 5,
+      "min_samples_leaf": 20
+    },
+    "cv_score": 0.31862169436082804,
+    "test_metrics": {
+      "accuracy": 0.8816,
+      "f1": 0.3739424703891709,
+      "roc_auc": 0.8339817297989971,
+      "pr_auc": 0.3310216573807677
+    }
+  },
+  "rf": {
+    "best_params": {
+      "max_depth": 10,
+      "min_samples_leaf": 10,
+      "n_estimators": 200
+    },
+    "cv_score": 0.7150597641932321,
+    "test_metrics": {
+      "accuracy": 0.9768,
+      "f1": 0.740608228980322,
+      "roc_auc": 0.9002554671112813,
+      "pr_auc": 0.7596553170768766
+    }
+  },
+  "gb": {
+    "best_params": {
+      "learning_rate": 0.1,
+      "max_depth": 3,
+      "n_estimators": 100
+    },
+    "cv_score": 0.6803216499059858,
+    "test_metrics": {
+      "accuracy": 0.97376,
+      "f1": 0.652542372881356,
+      "roc_auc": 0.896634202995778,
+      "pr_auc": 0.732153450385533
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "tree": {
+    "ccp_alpha": 0.001,
+    "max_depth": 5,
+    "min_samples_leaf": 20
+  },
+  "rf": {
+    "max_depth": 10,
+    "min_samples_leaf": 10,
+    "n_estimators": 200
+  },
+  "gb": {
+    "learning_rate": 0.1,
+    "max_depth": 3,
+    "n_estimators": 100
+  }
+}

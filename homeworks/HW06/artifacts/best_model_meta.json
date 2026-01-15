@@ -1,0 +1,12 @@
+{
+  "best_model": "rf",
+  "params": {
+    "max_depth": 10,
+    "min_samples_leaf": 10,
+    "n_estimators": 200
+  },
+  "test_metrics": {
+    "pr_auc": 0.7596553170768766,
+    "f1": 0.740608228980322
+  }
+}
