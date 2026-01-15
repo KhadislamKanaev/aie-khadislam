@@ -8,8 +8,8 @@
 ## Baselines (точные из ваших print в HW06.ipynb)
 | Модель              | Accuracy | F1    | PR-AUC |
 |---------------------|----------|-------|--------|
-| Dummy stratified    | 0.951   | 0.100 | 0.049 |
-| LogisticRegression  | 0.950   | 0.XXX | 0.XXX |
+| Dummy stratified    | 0.951 | 0.100 | 0.049 |
+| LogisticRegression  | 0.779 | 0.257 | 0.457 |
 
 ## Модели (тест) — ваши точные
 | Модель | Test PR-AUC | F1     | ROC-AUC |
