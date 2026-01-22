@@ -13,7 +13,7 @@
 
 ## 2. Protocol
 
-- Разбиение: train/test (доли и `random_state` не зафиксировал; разбиение делалось один раз перед подбором).
+- Разбиение: train/test = 80/20, `random_state=42`, `stratify=y`.
 - Подбор: GridSearchCV на train; подбирались гиперпараметры дерева/лесa/бустинга (см. `homeworks/HW06/artifacts/search_summaries.json`).
 - Метрики:
   - accuracy — общая доля правильных, но при дисбалансе может быть завышенной.
@@ -23,36 +23,36 @@
 
 ## 3. Models
 
-Сравнивались модели и подбирались параметры:
+Сравнивались модели и подбирались параметры (GridSearchCV на train, refit по PR-AUC):
 
-- DummyClassifier (baseline): запускался по заданию (финальные метрики в артефактах не сохранены).
-- LogisticRegression (baseline из S05): запускалась по заданию (финальные метрики в артефактах не сохранены).
-- DecisionTreeClassifier:
-  - Подбор: `ccp_alpha=0.001`, `max_depth=5`, `min_samples_leaf=20`.
-- RandomForestClassifier:
-  - Подбор: `n_estimators=200`, `max_depth=10`, `min_samples_leaf=10`.
-- GradientBoostingClassifier (gb):
-  - Подбор: `n_estimators=100`, `learning_rate=0.1`, `max_depth=3`.
+- DummyClassifier: `strategy="stratified"`.
+- LogisticRegression: Pipeline(StandardScaler + LogisticRegression), подбор `C ∈ {1.0, 10.0}`.
+- DecisionTreeClassifier: подбор `max_depth ∈ {3, None}`, `min_samples_leaf ∈ {1, 10}`.
+- RandomForestClassifier: подбор `n_estimators ∈ {100, 200}`, `max_depth ∈ {10, None}`, `min_samples_leaf ∈ {1, 10}`.
+- GradientBoostingClassifier: подбор `n_estimators ∈ {100, 200}`, `learning_rate=0.1`, `max_depth ∈ {2, 3}`.
 
 ## 4. Results
 
 Финальные метрики на test (из `homeworks/HW06/artifacts/metrics_test.json`):
 
+|Финальные метрики (сохранены в `metrics_test.json` и `best_model_meta.json`):
+
 | Model | Accuracy (test) | F1 (test) | ROC-AUC (test) | PR-AUC (test) |
 |---|---:|---:|---:|---:|
-| DecisionTree (ccp_alpha=0.001, max_depth=5, min_samples_leaf=20) | 0.8816 | 0.3739 | 0.8340 | 0.3310 |
-| RandomForest (n_estimators=200, max_depth=10, min_samples_leaf=10) | 0.9768 | 0.7406 | 0.9003 | 0.7597 |
-| GradientBoosting (n_estimators=100, learning_rate=0.1, max_depth=3) | 0.9736 | 0.6525 | 0.8966 | 0.7322 |
+| Dummy | 0.9069 | 0.0472 | 0.5032 | 0.0497 |
+| LogisticRegression | 0.9626 | 0.4038 | 0.8225 | 0.4966 |
+| DecisionTree | 0.9641 | 0.5517 | 0.7748 | 0.4809 |
+| RandomForest | 0.9738 | 0.6391 | 0.9016 | 0.7688 |
+| GradientBoosting | 0.9710 | 0.6103 | 0.8861 | 0.6753 |
 
 - Победитель: RandomForest.
-- Критерий: PR-AUC (0.7597) и также лучший F1 (0.7406) среди сохранённых моделей.
-- Лучшие параметры победителя: `max_depth=10`, `min_samples_leaf=10`, `n_estimators=200` (см. `homeworks/HW06/artifacts/best_model_meta.json`).
+- Критерий выбора: PR-AUC (test) = 0.7688.
+- Лучшие параметры победителя: `n_estimators=100`, `max_depth=None`, `min_samples_leaf=1`.
 
 ## 5. Analysis
 
-- Устойчивость: отдельные 5 прогонов с разными `random_state` не зафиксировал (в реальной задаче это важно для оценки стабильности).
-- Ошибки: confusion matrix для лучшей модели не сохранил в артефакты.
-- Интерпретация: permutation importance (top-10/15) не сохранил в артефакты.
+- Ошибки: confusion matrix для лучшей модели сохранён в `cm.jpg`.
+- Интерпретация: permutation importance (top-10) сохранён в `top_features.csv`.
 
 ## 6. Conclusion
 
