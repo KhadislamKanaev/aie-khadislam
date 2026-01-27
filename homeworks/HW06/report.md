@@ -33,17 +33,16 @@
 
 ## 4. Results
 
-Финальные метрики на test (из `homeworks/HW06/artifacts/metrics_test.json`):
+Финальные метрики (сохранены в `metrics_test.json` и `best_model_meta.json`):
 
-|Финальные метрики (сохранены в `metrics_test.json` и `best_model_meta.json`):
+| Model              | Accuracy | F1     | ROC-AUC | PR-AUC |
+|--------------------|----------|--------|---------|--------|
+| Dummy             | 0.9069  | 0.0472 | 0.5032  | 0.0497 |
+| LogisticRegression| 0.9626  | 0.4038 | 0.8225  | 0.4966 |
+| DecisionTree      | 0.9641  | 0.5517 | 0.7748  | 0.4809 |
+| **RandomForest**  | **0.9738** | **0.6391** | **0.9016** | **0.7688** |
+| GradientBoosting  | 0.9710  | 0.6103 | 0.8861  | 0.6753 |
 
-| Model | Accuracy (test) | F1 (test) | ROC-AUC (test) | PR-AUC (test) |
-|---|---:|---:|---:|---:|
-| Dummy | 0.9069 | 0.0472 | 0.5032 | 0.0497 |
-| LogisticRegression | 0.9626 | 0.4038 | 0.8225 | 0.4966 |
-| DecisionTree | 0.9641 | 0.5517 | 0.7748 | 0.4809 |
-| RandomForest | 0.9738 | 0.6391 | 0.9016 | 0.7688 |
-| GradientBoosting | 0.9710 | 0.6103 | 0.8861 | 0.6753 |
 
 - Победитель: RandomForest.
 - Критерий выбора: PR-AUC (test) = 0.7688.
@@ -53,6 +52,9 @@
 
 - Ошибки: confusion matrix для лучшей модели сохранён в `cm.jpg`.
 - Интерпретация: permutation importance (top-10) сохранён в `top_features.csv`.
+- RF overfitting: CV F1=0.539 → Test F1=0.639 (Δ=0.10)
+→ Нужно больше регуляризации (max_depth<20, min_samples_leaf>5)
+
 
 ## 6. Conclusion
 
