@@ -5,7 +5,7 @@
     "min_samples_leaf": 1,
     "n_estimators": 100
   },
-  "cv_score": 0.7185935089334811,
+  "cv_score": 0.7210509366689788,
   "test_metrics": {
     "accuracy": 0.9738,
     "f1": 0.6391184573002755,
