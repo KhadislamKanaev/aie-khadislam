@@ -1,0 +1,11 @@
+{
+  "model": "ResNet18 fine-tune",
+  "dataset": "STL10",
+  "best_val_accuracy": 96.0,
+  "test_accuracy": 95.19,
+  "epochs": 10,
+  "optimizer": "Adam",
+  "learning_rate": 0.0001,
+  "transform": "ResNet transform (224x224, ImageNet norm)",
+  "seed": 42
+}

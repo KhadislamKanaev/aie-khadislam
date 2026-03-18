@@ -1,0 +1,21 @@
+{
+  "ds02": {
+    "method": "kmeans",
+    "config": {
+      "k": 2
+    }
+  },
+  "ds03": {
+    "method": "kmeans",
+    "config": {
+      "k": 3
+    }
+  },
+  "ds04": {
+    "method": "dbscan",
+    "config": {
+      "eps": 1.0,
+      "min_samples": 5
+    }
+  }
+}

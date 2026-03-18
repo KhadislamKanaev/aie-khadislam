@@ -1,0 +1,15 @@
+{
+  "best_model": "RandomForest",
+  "params": {
+    "max_depth": null,
+    "min_samples_leaf": 1,
+    "n_estimators": 100
+  },
+  "cv_score": 0.7210509366689788,
+  "test_metrics": {
+    "accuracy": 0.9738,
+    "f1": 0.6391184573002755,
+    "roc_auc": 0.9016472221937195,
+    "pr_auc": 0.768782866968498
+  }
+}
