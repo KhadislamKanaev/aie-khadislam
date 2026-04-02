@@ -8,6 +8,8 @@
   "batch_size": 32,
   "learning_rate": 0.001,
   "num_epochs": 50,
-  "best_val_mae": 5.021242618560791,
+  "best_val_mae": 5.008447170257568,
+  "scaler": "StandardScaler",
+  "scaler_fitted_on": "train",
   "seed": 42
 }
