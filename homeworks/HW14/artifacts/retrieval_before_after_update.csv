@@ -1,0 +1,4 @@
+query,before_retrieved_doc_ids,after_retrieved_doc_ids,changed
+Что такое градиентный бустинг?,"ml_04, ml_05, ml_05","ml_06, ml_04, ml_08",True
+Зачем нужна функция активации в нейронной сети?,"ml_05, ml_05, ml_04","ml_07, ml_05, ml_05",True
+Как работает метод опорных векторов (SVM)?,"ml_01, ml_02, ml_05","ml_08, ml_06, ml_01",True
