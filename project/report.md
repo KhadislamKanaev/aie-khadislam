@@ -8,7 +8,7 @@
   - Качаева Лейла Казиевна
 - **Группа:** БББО-13-24 и БББО-14-24
 - **Контакты:** @xadikc, @ptasshkka
-- **Ссылка на репозиторий:** [GitHub]
+- **Ссылка на репозиторий:** [https://github.com/KhadislamKanaev/aie-khadislam] [https://github.com/LeylaKachaeva/aie-leyla-2025]
 
 ## 2. Постановка задачи и контекст
 
